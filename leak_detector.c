@@ -6,7 +6,7 @@
 /*   By: tdameros <tdameros@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:41:09 by tdameros          #+#    #+#             */
-/*   Updated: 2022/10/12 22:18:45 by tdameros         ###   ########lyon.fr   */
+/*   Updated: 2022/10/12 23:57:49 by tdameros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <fcntl.h>
 
 typedef struct s_list
