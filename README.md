@@ -11,4 +11,4 @@ gcc example.c leak_detector.c -I .
 ./a.out
 ```
 
-![leaks](https://user-images.githubusercontent.com/50496792/195443092-e9374ae0-74c3-4110-84ae-b7dbe805dd5d.png)
+![example_image](example.png)

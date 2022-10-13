@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   leak_detector.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdameros <tdameros@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:41:09 by tdameros          #+#    #+#             */
-/*   Updated: 2022/10/12 23:57:49 by tdameros         ###   ########lyon.fr   */
+/*   Updated: 2022/10/13 12:11:24 by vfries           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,8 +200,18 @@ void	*ld_malloc(size_t size, char *file, int line)
 {
 	void	*malloc_ptr;
 	t_list	*new_node;
+	char	*line_str;
 
 	malloc_ptr = malloc(size);
+	if (malloc_ptr == NULL)
+	{
+		printf("\n=============== MALLOC FAILED ================\n");
+		printf("\nMalloc failed in %s at line %d\n", file, line);
+		line_str = get_line(file, line);
+		printf("%s\n\n", line_str);
+		free(line_str);
+		return (NULL);
+	}
 	new_node = list_new(malloc_ptr, size, file, line);
 	list_add_front(&g_mem_list, new_node);
 	return (malloc_ptr);
