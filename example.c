@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:15:02 by tdameros          #+#    #+#             */
-/*   Updated: 2022/10/13 12:11:30 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2022/10/15 15:20:29 by tdameros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	main(void)
 
 	test1 = malloc(sizeof(int) * 20);
 	test2 = malloc(sizeof(char *) * 13);
-	test3 = malloc(SIZE_MAX);
-
+	test3 = malloc(184467440737095516);
 	show_leaks();
 	return (0);
 }

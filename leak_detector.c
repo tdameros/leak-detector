@@ -6,7 +6,7 @@
 /*   By: vfries <vfries@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:41:09 by tdameros          #+#    #+#             */
-/*   Updated: 2022/10/13 12:11:24 by vfries           ###   ########lyon.fr   */
+/*   Updated: 2022/10/15 15:11:39 by tdameros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_list
 	void			*malloc_ptr;
 	char			*file;
 	int				line;
-	int				size;
+	size_t			size;
 	struct s_list	*next;
 }	t_list;
 
@@ -111,7 +111,7 @@ void	list_add_front(t_list **lst, t_list *new)
 	*lst = new;
 }
 
-t_list	*list_new(void *malloc_ptr, int size, char *file, int line)
+t_list	*list_new(void *malloc_ptr, size_t size, char *file, int line)
 {
 	t_list	*new_node;
 
@@ -152,21 +152,26 @@ void	show_leaks(void)
 {
 	t_list	*node;
 	char	*line;
+	size_t	bytes;
 
+	bytes = 0;
 	node = g_mem_list;
 	if (node != NULL)
 	{
-		printf("=============== LEAKS DETECTED ===============\n");
+		printf("\n=============== LEAKS DETECTED ===============\n");
 		while (node != NULL)
 		{
-			printf("\n%d bytes leaks in %s", node->size, node->file);
+			printf("\n%zu bytes leaks in %s", node->size, node->file);
 			printf(" at line %d\n", node->line);
+			bytes += node->size;
 			line = get_line(node->file, node->line);
 			printf("%s\n", line);
 			free(line);
 			node = node->next;
 		}
 		list_clear(&g_mem_list);
+		if (bytes)
+			printf("\nLEAKS SUMMARY: %zu bytes\n", bytes);
 	}
 }
 
